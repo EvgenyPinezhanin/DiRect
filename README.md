@@ -1,22 +1,5 @@
 # DiRect globalizer problem
 
-Проект представляет из себя пример запуска direct на задачах globalizer
-
-directPM.cpp - пример c main функцией
-
-Grishagin и Rastrigin2 - примеры задач, собираются в dll.
-
-Проект direct_opt_test - принимает в качестве аргументов командной строки путь до dll  задачей.
-
-Пример командной строки для запуска задачи Гришагина
-..\bin\grishagin.dll ..\Grishagin\grishagin_conf.xml
-
-Пример командной строки для запуска задачи Гришагина:
-..\bin\ra.dll
-
-Для сборки проекта с помощью cmake запустите gen.bat. 
-Также присутствует собранный проект под Visual Studio 2010 - DiRect10 и Visual Studio 2013 - DiRect
-
 Original source https://github.com/rlnx/DiRect
 
 Original source [nlopt](https://github.com/stevengj/nlopt).

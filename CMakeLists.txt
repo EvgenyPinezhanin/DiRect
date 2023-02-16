@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 2.8.8)
-set(PROJECT_NAME_STR direct_opt)
-project(${PROJECT_NAME_STR} C CXX)
+cmake_minimum_required(VERSION 3.0)
+
+set(PROJECT_NAME direct)
+project(${PROJECT_NAME})
 
 if(CMAKE_COMPILER_IS_GNUCXX)
   add_definitions(-Wno-deprecated)
@@ -8,33 +9,31 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 if(MSVC)
-  # TODO: add optimization options for msvc
-  # vc 2012 fix for vararg templates
   add_definitions("-D_VARIADIC_MAX=10")
 endif()
 
-set(pugixml pugixml)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin/release)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin/debug)
 
-set(PROBLEM_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/_bin CACHE STRING "Output directory")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG   ${PROBLEM_OUTPUT_DIRECTORY})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROBLEM_OUTPUT_DIRECTORY})
+set(DIRECT_LIBRARY ${PROJECT_NAME})
+set(DIRECT_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+set(DIRECT_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
+set(DIRECT_LIB_NAME ${PROJECT_NAME} CACHE STRING "" FORCE)
+set(DIRECT_INC_NAME ${DIRECT_INCLUDE} CACHE PATH "" FORCE)
 
-set(SCL_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin CACHE STRING "Output directory")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG   ${SCL_OUTPUT_DIRECTORY})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${SCL_OUTPUT_DIRECTORY})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG   ${SCL_OUTPUT_DIRECTORY})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${SCL_OUTPUT_DIRECTORY})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG   ${SCL_OUTPUT_DIRECTORY})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${SCL_OUTPUT_DIRECTORY})
+include_directories(${DIRECT_INCLUDE})
 
-# set common include folder for module
-set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/src)
+# BUILD
+add_subdirectory(src)
+add_subdirectory(samples)
 
-file(GLOB SRC_FILES "${PROJECT_SOURCE_DIR}/src/*.c" "${PROJECT_SOURCE_DIR}/src/*.cpp")
-file(GLOB hdrs "${PROJECT_SOURCE_DIR}/src/*.h*" "${PROJECT_SOURCE_DIR}/src/*.hpp*" "${PROJECT_SOURCE_DIR}/src/parameters/*.h*")
-
-
-add_executable(${PROJECT_NAME_STR}_test ${SRC_FILES} ${srcs} ${hdrs})
-add_subdirectory(Grishagin)
-add_subdirectory(Rastrigin2)
+# REPORT
+message(STATUS "")
+message(STATUS "General configuration for ${PROJECT_NAME}")
+message(STATUS "======================================")
+message(STATUS "")
+message(STATUS "   Configuration: ${CMAKE_BUILD_TYPE}")
+message(STATUS "")
