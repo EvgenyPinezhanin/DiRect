@@ -35,7 +35,7 @@ public:
     void setMaxIter(int _max_iter) { max_iter = _max_iter; };
     void setAlghorithm(direct_algorithm _algorithm) { algorithm = _algorithm; };
 
-    int solve(int &count, vector<double> &X, double &minf);
+    int solve(vector<double> &X, double &minf);
 };
 
 #endif // DIRECT_METHOD_H

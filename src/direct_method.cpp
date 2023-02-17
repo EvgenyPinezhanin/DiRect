@@ -1,8 +1,8 @@
 #include <direct_method.h>
 
-int direct_method::solve(int &count, vector<double> &X, double &minf) {
+int direct_method::solve(vector<double> &X, double &minf) {
     direct_return_code ret_code;
-    double magic_eps = 0.0, magic_eps_abs = 0.0;
+    double magic_eps = 1.0e-4, magic_eps_abs = 1.0e-4;
     double start = 0.0, maxtime = 0.0;
     double volume_reltol = 0.0, sigma_reltol = -1.0;
     int force_stop = 0;
