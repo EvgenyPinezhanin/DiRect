@@ -16,12 +16,14 @@ double tst_obj(int n, const double *xy, int *undefined_flag, void *unused) {
 int main(int argc, char **argv) {
     vector<double> X(2), A{-3.0, -3.0}, B{3.0, 3.0};
     int n = 2, max_feval = 500, max_iter = 500;
-    int info, force_stop = 0, count;
+    double magic_eps = 0.0;
+    double volume_reltol = 0.0, sigma_reltol = -1.0;
+    int info, force_stop = 0;
     double minf;
 
-    direct_method direct(tst_obj, nullptr, n, A, B, max_feval, max_iter, DIRECT_ORIGINAL, stdout);
+    direct_method direct(tst_obj, nullptr, n, A, B, max_feval, max_iter, magic_eps, volume_reltol, sigma_reltol, stdout, DIRECT_ORIGINAL);
 
-    info = direct.solve(count, X, minf);
+    info = direct.solve(X, minf);
 
     cout << "min f = " << minf << ", at (" << X[0] << "," << X[1] << ") after " << cnt << " evals, return value " << info << endl;
 

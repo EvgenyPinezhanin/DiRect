@@ -1,10 +1,11 @@
 #include <direct_method.h>
 
+#include <cmath>
+
 int direct_method::solve(vector<double> &X, double &minf) {
     direct_return_code ret_code;
-    double magic_eps = 1.0e-4, magic_eps_abs = 1.0e-4;
+    double magic_eps_abs = abs(magic_eps);
     double start = 0.0, maxtime = 0.0;
-    double volume_reltol = 0.0, sigma_reltol = -1.0;
     int force_stop = 0;
     double fglobal_reltol = 0.0;
 
