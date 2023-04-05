@@ -5,6 +5,7 @@
 direct_return_code direct_method::solve(vector<double> &X, double &minf) {
     direct_return_code ret_code;
     double start = 0.0, maxtime = 0.0;
+    double magic_eps_abs = 0.0;
     int force_stop = 0;
     double fglobal = DIRECT_UNKNOWN_FGLOBAL;
     double fglobal_reltol = DIRECT_UNKNOWN_FGLOBAL_RELTOL;
