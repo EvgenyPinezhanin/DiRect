@@ -1,10 +1,11 @@
 #include <iostream>
-#include <cstdio>
 
 #include <direct_method.h>
 
 using namespace std;
 
+/* has two global minima at (0.09,-0.71) and (-0.09,0.71), plus
+   4 additional local minima */
 static int cnt = 0;
 double tst_obj(int n, const double *xy, int *undefined_flag, void *unused) {
     double x = xy[0], y = xy[1];

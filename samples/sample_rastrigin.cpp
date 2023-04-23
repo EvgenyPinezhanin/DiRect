@@ -11,7 +11,7 @@
 
 using namespace std;
 
-double f_rastrigin(int n, const double *X, int *undefined_flag, void *data) {
+double fRastrigin(int n, const double *X, int *undefinedFlag, void *data) {
     int *count = static_cast<int*>(data); (*count)++;
     double sum = 0.0;
     for (int i = 0; i < n; i++) {
@@ -21,18 +21,18 @@ double f_rastrigin(int n, const double *X, int *undefined_flag, void *data) {
 }
 
 int main(int argc, char **argv) {
-    vector<double> X, A{-0.5, -0.5}, B{1.0, 1.0};
-    int n = 2, max_feval = 500, max_iter = 500;
-    double magic_eps = 0.0;
-    double volume_reltol = 0.0, sigma_reltol = -1.0;
-    int info, force_stop = 0, count;
-    double minf;
+    vector<double> X, A{ -0.5, -0.5 }, B{ 1.0, 1.0 };
+    int n = 2, maxFevals = 500, maxIters = 500;
+    double magicEps = 0.0;
+    double volumeReltol = 0.0, sigmaReltol = -1.0;
+    int info, forceStop = 0, numberFevals;
+    double minF;
 
-    direct_method direct(f_rastrigin, &count, n, A, B, max_feval, max_iter, magic_eps, volume_reltol, sigma_reltol, stdout, DIRECT_ORIGINAL);
+    DirectMethod direct(fRastrigin, &numberFevals, n, A, B, maxFevals, maxIters, magicEps, volumeReltol, sigmaReltol, stdout, DIRECT_ORIGINAL);
 
-    info = direct.solve(X, minf);
+    info = direct.solve(X, minF);
 
-    cout << "min f = " << minf << ", at (" << X[0] << "," << X[1] << ") after " << count << " evals, return value " << info << endl;
+    cout << "min f = " << minF << ", at (" << X[0] << "," << X[1] << ") after " << numberFevals << " evals, return value " << info << endl;
 
 #if defined(_MSC_VER)
     cin.get();

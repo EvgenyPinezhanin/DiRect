@@ -2,26 +2,26 @@
 
 #include <cmath>
 
-direct_return_code direct_method::solve(vector<double> &X, double &minf) {
-    direct_return_code ret_code;
+direct_return_code DirectMethod::solve(vector<double> &X, double &minF) {
+    direct_return_code returnCode;
     double start = 0.0, maxtime = 0.0;
-    double magic_eps_abs = 0.0;
-    int force_stop = 0;
+    double magicEpsAbs = 0.0;
+    int forceStop = 0;
     double fglobal = DIRECT_UNKNOWN_FGLOBAL;
-    double fglobal_reltol = DIRECT_UNKNOWN_FGLOBAL_RELTOL;
+    double fglobalReltol = DIRECT_UNKNOWN_FGLOBAL_RELTOL;
 
     X.resize(n);
 
-    ret_code = direct_optimize(f, f_data, n, A.data(), B.data(), X.data(), &minf, max_feval, max_iter, 
-                               start, maxtime, magic_eps, magic_eps_abs, volume_reltol, sigma_reltol,
-                               &force_stop, fglobal, fglobal_reltol, logfile, algorithm);
+    returnCode = direct_optimize(f, fData, n, A.data(), B.data(), X.data(), &minF, maxFevals, maxIters, 
+                                 start, maxtime, magicEps, magicEpsAbs, volumeReltol, sigmaReltol,
+                                 &forceStop, fglobal, fglobalReltol, logfile, algorithm);
     
-    return ret_code;
+    return returnCode;
 }
 
-direct_return_code direct_method::solve_test() {
+direct_return_code DirectMethod::solveTest() {
     vector<double> X(n);
-    double minf;
+    double minF;
 
-    return solve(X, minf);
+    return solve(X, minF);
 }
