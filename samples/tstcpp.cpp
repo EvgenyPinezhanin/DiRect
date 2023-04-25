@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
     int info, force_stop = 0;
     double minf;
 
-    direct_method direct(tst_obj, nullptr, n, A, B, max_feval, max_iter, magic_eps, volume_reltol, sigma_reltol, stdout, DIRECT_ORIGINAL);
+    DirectMethod direct(tst_obj, nullptr, n, A, B, max_feval, max_iter, magic_eps, volume_reltol, sigma_reltol, stdout, DIRECT_ORIGINAL);
 
     info = direct.solve(X, minf);
 
